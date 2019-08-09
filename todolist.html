@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>to do list</title>
+</head>
+
+<style>
+    .checked{ 
+
+text-decoration: line-through;
+
+    }
+    
+    
+    
+  
+    </style>
+
+<body>
+  
+<h1>My to do list</h1>
+
+<input id="input" type="text" placeholder="write anything">
+<button id="btn"> GO</button>
+<div id="content" > </div>
+
+<script> 
+                document.getElementById('content').innerHTML= localStorage.getItem('listItems');
+
+document.getElementById('btn').addEventListener('click',function(){
+
+    var a=document.createElement('li')
+a.innerHTML=document.getElementById('input').value
+
+var c=document.createElement('input')
+c.addEventListener('change',checkItem)
+c.setAttribute('type','checkbox')
+
+    var b=document.createElement('button');
+b.addEventListener('click',removeItem)
+a.append(c)
+ 
+
+
+b.innerHTML= "X"
+a.append(b)
+
+
+
+document.getElementById('content').append(a);
+
+             
+
+})
+
+
+function removeItem(){
+  this.parentNode.remove()
+  localStorage.setItem('listItems',document.getElementById('content').innerHTML)
+  }
+function checkItem(){
+this.parentNode.classList.toggle('checked')
+}
+</script>
+</body>
+
+
+
+</html>
